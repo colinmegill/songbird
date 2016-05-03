@@ -12,7 +12,7 @@ var songbird = Botkit.slackbot({
 
 // var witToken = process.env.WIT_TOKEN;
 
-// var github = new GitHubApi({
+var github = new GitHubApi({
   // optional
   // debug: true,
   // protocol: "https",
@@ -22,23 +22,15 @@ var songbird = Botkit.slackbot({
   // headers: {
   //     "user-agent": "My-Cool-GitHub-App" // GitHub is happy with a unique user agent
   // }
-// });
-
-// github.authenticate({
-//   type: "basic",
-//   username: process.env.GITHUB_USERNAME,
-//   password: process.env.GITHUB_TOKEN
-// });
-
-github.issues.create({
-  user: "colinmegill",
-  repo: "songbird",
-  title: "test" + Math.floor(Math.random()*10000),
-  body: "Slow-carb ethical single-origin coffee gluten-free actually swag. Cronut health goth polaroid chicharrones everyday carry, hoodie hashtag kale chips brunch drinking vinegar 90's flexitarian. Blog tofu VHS whatever aesthetic +1. Kombucha poutine trust fund marfa pug pinterest.",
-  // milestone: "null",
-  assignee: "colinmegill",
-  // labels: [""]
 });
+
+github.authenticate({
+  type: "basic",
+  username: process.env.GITHUB_USERNAME,
+  password: process.env.GITHUB_TOKEN
+});
+
+
 
 songbird.spawn({
   token: slackToken
@@ -48,31 +40,35 @@ songbird.spawn({
   }
   console.log('Connected to Slack');
 });
-
+// github.issues.createLabel({
+//   user: "colinmegill",
+//   repo: "songbird",
+//   name: message.match[1],
+//   color: "#BADA55",
+// });
 // var witbot = Witbot(witToken);
-songbird.hears('.*', 'direct_message', function (bot, message) {
-  // witbot.process(message.texts, message)
-})
-
-songbird.hears('issue', 'direct_message', function (bot, message) {
-
+songbird.hears(['hello','hi', 'hey'], 'direct_message', function (bot, message) {
+  console.log(message.match)
+  bot.reply(message, "hey there!")
 });
 
-controller.hears([
-  'label called (.*)',
-  'label named (.*)',
-  'label (.*)',
+songbird.hears([
+  'issue (.*)',
 ],[
   'direct_message',
   'direct_mention',
   'mention',
 ], function(bot, message) {
-  console.log(message);
-  //
-  // github.issues.createLabel({
-  //   user: "colinmegill",
-  //   repo: "songbird",
-  //   name: message.match[1],
-  //   color: null,
-  // });
+
+  console.log()
+
+  github.issues.create({
+    user: "colinmegill",
+    repo: "songbird",
+    title: message.match[1],
+    body: "Slow-carb ethical single-origin coffee gluten-free actually swag. Cronut health goth polaroid chicharrones everyday carry, hoodie hashtag kale chips brunch drinking vinegar 90's flexitarian. Blog tofu VHS whatever aesthetic +1. Kombucha poutine trust fund marfa pug pinterest.",
+    // milestone: "null",
+    assignee: "colinmegill",
+    // labels: [""]
+  });
 });
