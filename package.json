@@ -18,7 +18,9 @@
   "homepage": "https://github.com/colinmegill/songbird#readme",
   "dependencies": {
     "botkit": "^0.1.1",
+    "dotenv": "^2.0.0",
     "github": "^0.2.4",
+    "github4": "^1.0.0",
     "witbot": "^2.1.0"
   }
 }
