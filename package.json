@@ -1,0 +1,23 @@
+{
+  "name": "songbird",
+  "version": "1.0.0",
+  "description": "Slackbot for project management",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colinmegill/songbird.git"
+  },
+  "author": "Colin Megill",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/colinmegill/songbird/issues"
+  },
+  "homepage": "https://github.com/colinmegill/songbird#readme",
+  "dependencies": {
+    "botkit": "^0.1.1",
+    "witbot": "^2.1.0"
+  }
+}
