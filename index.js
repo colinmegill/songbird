@@ -67,7 +67,7 @@ controller.hears([
   'direct_mention',
   'mention',
 ], function(bot, message) {
-  console.log(message)
+  console.log(message);
   //
   // github.issues.createLabel({
   //   user: "colinmegill",
